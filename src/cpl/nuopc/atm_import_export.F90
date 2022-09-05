@@ -343,23 +343,23 @@ contains
          mesh=Emesh, rc=rc)
     if (ChkErr(rc,__LINE__,u_FILE_u)) return
 
-    ! Determine if atm/lnd/ocn are on the same grid - if so set area correction factors to 1
-    call NUOPC_CompAttributeGet(gcomp, name='mesh_atm', value=mesh_atm, rc=rc)
-    if (ChkErr(rc,__LINE__,u_FILE_u)) return
-    call NUOPC_CompAttributeGet(gcomp, name='mesh_lnd', value=mesh_lnd, rc=rc)
-    if (ChkErr(rc,__LINE__,u_FILE_u)) return
-    call NUOPC_CompAttributeGet(gcomp, name='mesh_ocn', value=mesh_ocn, rc=rc)
-    if (ChkErr(rc,__LINE__,u_FILE_u)) return
+    !! Determine if atm/lnd/ocn are on the same grid - if so set area correction factors to 1
+    !call NUOPC_CompAttributeGet(gcomp, name='mesh_atm', value=mesh_atm, rc=rc)
+    !if (ChkErr(rc,__LINE__,u_FILE_u)) return
+    !call NUOPC_CompAttributeGet(gcomp, name='mesh_lnd', value=mesh_lnd, rc=rc)
+    !if (ChkErr(rc,__LINE__,u_FILE_u)) return
+    !call NUOPC_CompAttributeGet(gcomp, name='mesh_ocn', value=mesh_ocn, rc=rc)
+    !if (ChkErr(rc,__LINE__,u_FILE_u)) return
 
     samegrid_atm_lnd_ocn = .false.
-    if ( trim(mesh_lnd) /= 'UNSET' .and. trim(mesh_atm) == trim(mesh_lnd) .and. &
-         trim(mesh_ocn) /= 'UNSET' .and. trim(mesh_atm) == trim(mesh_ocn)) then
-       samegrid_atm_lnd_ocn = .true.
-    elseif ( trim(mesh_lnd) == 'UNSET' .and. trim(mesh_atm) == trim(mesh_ocn)) then
-       samegrid_atm_lnd_ocn = .true.
-    elseif ( trim(mesh_ocn) == 'UNSET' .and. trim(mesh_atm) == trim(mesh_lnd)) then
-       samegrid_atm_lnd_ocn = .true.
-    end if
+    !if ( trim(mesh_lnd) /= 'UNSET' .and. trim(mesh_atm) == trim(mesh_lnd) .and. &
+    !     trim(mesh_ocn) /= 'UNSET' .and. trim(mesh_atm) == trim(mesh_ocn)) then
+    !   samegrid_atm_lnd_ocn = .true.
+    !elseif ( trim(mesh_lnd) == 'UNSET' .and. trim(mesh_atm) == trim(mesh_ocn)) then
+    !   samegrid_atm_lnd_ocn = .true.
+    !elseif ( trim(mesh_ocn) == 'UNSET' .and. trim(mesh_atm) == trim(mesh_lnd)) then
+    !   samegrid_atm_lnd_ocn = .true.
+    !end if
 
     ! allocate area correction factors
     call ESMF_MeshGet(Emesh, numOwnedElements=numOwnedElements, rc=rc)
